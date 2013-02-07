@@ -445,20 +445,23 @@
       lightbox: {
 		init : function() {
 			slider.find("img").click(function(e) {
-                var sWidth  = slider.width()
+        if(slider.parent().attr('id') != "flex-lightbox") {
+                  var sWidth  = slider.width()
                   , sHeight = slider.height()
                   , sRatio  = sWidth / sHeight
                   , wHeight = window.innerHeight-150
                   // By removing 5% of the height, the math seems to work better.
                   // When not removing this 5%, the image often hangs out the bottom.
                   , wWidth  = (wHeight * .95) * sRatio
-				slider.wrap('<div id="flex-lightbox"/>');
+        slider.wrap('<div id="flex-lightbox"/>');
                 $("#flex-lightbox").css({
                     "max-height" : wHeight,     // By setting max-width, we allow for the screen/slider to resize down
                     "max-width"  : wWidth       // By setting max-width, we allow for the screen/slider to resize down
                 });
                 $("#flex-lightbox-coverall").show();
-				methods.resize();
+        methods.resize();
+        }
+
 			});
 		},
 		close : function() {
